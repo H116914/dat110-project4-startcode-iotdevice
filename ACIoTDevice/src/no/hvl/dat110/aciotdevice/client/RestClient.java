@@ -23,13 +23,28 @@ public class RestClient {
 	public void doPostAccessEntry(String message) {
 
 		// TODO: implement a HTTP POST on the service to post the message
+		Gson gson = new Gson();
 		
-		RequestBody body = RequestBody.create(JSON, message.getBytes());
+		AccessMessage accMsg = new AccessMessage(message);
+		RequestBody body = RequestBody
+				.create(JSON, gson.toJson(accMsg, AccessMessage.class));
 		
-		new Request.Builder()
+		
+		Request req = new Request.Builder()
 				.url("http://localhost:8080" + logpath)
 				.post(body)
 				.build();
+		
+		OkHttpClient client = new OkHttpClient();
+		
+		try {
+			Response res = client.newCall(req).execute();
+			String resTxt = res.body().string();
+			
+			System.out.println("Log response: " + res);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		
 	}
 	
@@ -49,7 +64,7 @@ public class RestClient {
 		try {
 			Response res = client.newCall(req).execute();
 			String resTxt = res.body().string();
-			
+			System.out.println("--------" + resTxt);
 			Gson gson = new Gson();
 			code = gson.fromJson(resTxt, AccessCode.class);
 		} catch (IOException e1) {
