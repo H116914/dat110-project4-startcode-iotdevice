@@ -22,7 +22,7 @@ public class RestClient {
 
 	public void doPostAccessEntry(String message) {
 
-		// TODO: implement a HTTP POST on the service to post the message
+		// : implement a HTTP POST on the service to post the message
 		Gson gson = new Gson();
 		
 		AccessMessage accMsg = new AccessMessage(message);
@@ -38,12 +38,9 @@ public class RestClient {
 		OkHttpClient client = new OkHttpClient();
 		
 		try {
-			Response res = client.newCall(req).execute();
-			String resTxt = res.body().string();
-			
-			System.out.println("Log response: " + res);
-		} catch (IOException e1) {
-			e1.printStackTrace();
+			client.newCall(req).execute();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		
 	}
@@ -51,7 +48,7 @@ public class RestClient {
 	private static String codepath = "/accessdevice/code";
 	
 	public AccessCode doGetAccessCode() {
-		// TODO: implement a HTTP GET on the service to get current access code
+		// : implement a HTTP GET on the service to get current access code
 		AccessCode code = null;
 		
 		Request req = new Request.Builder()
@@ -64,11 +61,11 @@ public class RestClient {
 		try {
 			Response res = client.newCall(req).execute();
 			String resTxt = res.body().string();
-			System.out.println("--------" + resTxt);
+			
 			Gson gson = new Gson();
 			code = gson.fromJson(resTxt, AccessCode.class);
-		} catch (IOException e1) {
-			e1.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		
 		return code;

@@ -10,5 +10,6 @@
 	<classpathentry kind="lib" path="C:/Users/Ruben Aadland/Desktop/skole program/jars/okhttp-3.4.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Ruben Aadland/Desktop/skole program/jars/okio-1.9.0.jar"/>
 	<classpathentry kind="lib" path="/dat110-project2/libs/gson-2.8.5.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ACCloudService"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
